@@ -43,6 +43,10 @@ for element in soup.find_all('a', {'class', 'd2l-link'}, onclick=False):
 generated_grade_page_html = '<h1>Brightspace Sucks lol</h1>'
 
 # Fetch a full grades table from a Brightspace course. This function contains the same code that Alex wrote, just separated into a function
+# TODO: Modify this function so that...
+#       1. It reads the content of the table individually
+#       2. Parse the content into a JSON file
+#       3. The Swift code in Carleton Grades app will parse the content of that JSON file into the SwiftUI view
 def fetch_single_grade(x):
     # Load grades page
     print('Loading course ' + str(x + 1) + '/' + str(len(grade_page_urls)) + '...')
