@@ -4,10 +4,20 @@ import base64
 import json
 from bs4 import BeautifulSoup
 from CarletonTools import *
+from EncryptionManager import *
 
 # Get login cridentials from json file
 with open('cridentials.json', 'r') as f:
+    # Check if the cridentials file is empty. If yes, ask for input then encrypt on the spot
+    cridentials: any
+    if f.read() == None:
+        user_input = EncryptionManager.get_user_input()
+        padded_credentials = EncryptionManager.credentials_padder(user_input)
+        EncryptionManager.encrypt_credentials(padded_credentials)
+
     cridentials = json.loads(f.read())
+
+# TODO: Decrypt these two with AES descryption algorithm instead
 my_username = base64.b64decode(cridentials["username"]).decode()
 my_password = base64.b64decode(cridentials["password"]).decode()
 
